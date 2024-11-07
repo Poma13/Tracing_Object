@@ -28,7 +28,7 @@ while True:
             if dist < 30:
                 app = False
         if app:
-            if cy > 550: # не добавляем машины в далеке
+            if cy > 550: # не добавляем машины вдалеке
                 center_point_now.append((cx, cy))
         #cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), thickness=2)
     cv2.line(frame, (0, 550), (1920, 550), (0, 255, 0), 1)
