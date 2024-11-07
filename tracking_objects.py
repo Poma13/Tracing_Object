@@ -5,7 +5,7 @@ from object_detection import ObjectDetection
 od = ObjectDetection()
 cap = cv2.VideoCapture('videos/los_angeles.mp4')
 tracking_objs = {}
-trajectories = {} # точка появления авто и точка, где его последний раз видели (по ним стоим траекторию)
+trajectories = {} # точка появления авто и точка, где его последний раз видели (по ним строим траекторию)
 tracking_frames = {} # сколько кадров была машина на экране
 tracking_id = 0
 cadr = 0
