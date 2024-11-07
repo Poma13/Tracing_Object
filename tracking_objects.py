@@ -137,7 +137,7 @@ while True:
         if not(tracking_objs[key] in center_point_now):
             keys2Wt_L.append(key)
 
-    for key in keys2Wt_l:
+    for key in keys2Wt_L:
         waiting_list[key] = (tracking_objs[key], cadr) # cadr - на каком кадре машина пропала
         del tracking_objs[key]
 
