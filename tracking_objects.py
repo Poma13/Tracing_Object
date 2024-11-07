@@ -66,7 +66,7 @@ while True:
                 if trajectories[key][1] == (0, 0): 
                     max_dist = 40
                     if dist < max_dist:
-                        tracking_objs[key] = pt
+                        tracking_objs[key] = pt # восстанавливаем машины в основной словарь
                         list2restore.append(key)
                 else:
                     ((x1, y1), (x2, y2)) = trajectories[key]
@@ -75,17 +75,18 @@ while True:
                     #print(pt, k, key, delta_x)
                     if dist < 100 and delta_x < 15:
 
-                        tracking_objs[key] = pt
+                        tracking_objs[key] = pt # восстанавливаем машины в основной словарь
                         list2restore.append(key)
-    # восстанавливаем машины в основной словарь
+    
     for key in list2restore:
-        del waiting_list[key]
+        del waiting_list[key] # удаляем машины из списка ожидания
+
     # удаляем машины, которые не появились, выводим их скорость
     for key in list2del:
         # вывод скоростей
         if trajectories[key][1] != (0, 0): # если машину видели не 1 раз (иначе мало данных)
             way = math.hypot(trajectories[key][0][0]-trajectories[key][1][0], trajectories[key][0][1]-trajectories[key][1][1])
-            speed = way//tracking_frames[key]-3
+            speed = way/(tracking_frames[key]-3)
             speeds[key] = speed
             print(f'Скорость автомобиля {key} равна {speed} пиксилей/кадр')
         del waiting_list[key]
@@ -131,13 +132,13 @@ while True:
 
 
     # 'ставим на учет' пропавшие машины
-    keys2del = []
+    keys2Wt_L = []
     for key in tracking_objs.keys():
         if not(tracking_objs[key] in center_point_now):
-            keys2del.append(key)
+            keys2Wt_L.append(key)
 
-    for key in keys2del:
-        waiting_list[key] = (tracking_objs[key], cadr)
+    for key in keys2Wt_l:
+        waiting_list[key] = (tracking_objs[key], cadr) # cadr - на каком кадре машина пропала
         del tracking_objs[key]
 
     # отображение id машин
